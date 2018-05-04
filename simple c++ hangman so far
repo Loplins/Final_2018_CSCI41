@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <ctime>
+#include <cctype>
+
+using namespace std;
+
+int main() {
+
+	const int MAX_WRONG = 8;
+
+	vector<string> words;
+	words.push_back("TARIK");
+	words.push_back("KAD");
+	words.push_back("GARRET");
+	words.push_back("LINDSEY");
+	words.push_back("MEME");
+
+
+	srand(static_cast<unsigned int>(time(0)));
+	random_shuffle(words.begin(), words.end());
+	const string the_guessing_word = words[0];
+
+
+	int wrong = 0;
+	string soFar(the_guessing_word.size(), '-');
+	string used = "";
+
+	cout << "\t\t\tWelcome to Hangman!";
+	cout << "\n\t\t\t------------------ -\n\n";
+	cout << "You have exactly " << (MAX_WRONG - wrong) << " guesses, goodluck!";
+
+
+	while ((wrong < MAX_WRONG) && (soFar != the_guessing_word)) {
+		cout << "\nYou've used the following letters:\n" << used << endl;
+		cout << "So far, the word is: " << soFar << endl;
+
+		char guess;
+		cout << "\n\nEnter your guess: ";
+		cin >> guess;
+		guess = toupper(guess); //make uppercase since secret word in uppercase
+
+		while (used.find(guess) != string::npos) {
+			cout << "\nYou've already guessed " << guess << endl;
+			cout << "Enter your guess: ";
+			cin >> guess;
+			guess = toupper(guess);
+		}
+
+		used += guess;
+
+		if (the_guessing_word.find(guess) != string::npos) {
+			cout << "That's right! " << guess << " is in the word.\n";
+			for (unsigned int i = 0; i < the_guessing_word.length(); ++i) {
+				if (the_guessing_word[i] == guess) {
+					soFar[i] = guess;
+				}
+			}
+		} else {
+			++wrong;
+			cout << "Sorry, " << guess << " isn't in the word.\n";
+			cout << "You have " << (MAX_WRONG - wrong) << " guesses left.\n";
+
+		}
+	}
+	if (wrong == MAX_WRONG) {
+		cout << "Game over, YOU ARE DEAD";
+
+	} else {
+		cout << "Congratulations! You won the game!!" ;
+	}
+}
+
