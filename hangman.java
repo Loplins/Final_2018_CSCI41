@@ -1,18 +1,19 @@
 import java.util.Scanner;
+// import java.util.Random;		//tool for random word selection
 
 
 public class hangman{																			
 
 	private static String[] words = {"Garrett", "Kehardip", "Lindsey", "Tarik" };				//todo Add words or link to dict like before
 	private static String word = words[(int)(Math.random() * words.length)];
-	private static String asterisk = new String(new char[word.length()]).replace("\0", "*");	//randomizer
-	private static int count = 0;																//number of wrong guesses
+	private static String asterisk = new String(new char[word.length()]).replace("\0", "*");	//randomizer for word selection
+	private static int count = 0;																//count is number of wrong guesses
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
 		while (count < 7 && asterisk.contains("*")) {
-			System.out.println("Guess a letter in the word");
+			System.out.println("Guess a letter in the word");									// Output message
 			System.out.println(asterisk);
 			String guess = sc.next();
 			hang(guess);
@@ -41,6 +42,7 @@ public class hangman{
 		if (asterisk.equals(word)) {
 			System.out.println("Congratulations, you actually survived.");
 			System.out.println("The word was " + word);
+//			System.out.println("");
 		}
 	}
 
@@ -54,15 +56,33 @@ public class hangman{
 	public static void hangmanImage() {
 		if (count == 1) {
 			System.out.println("Wrong guess, try again");
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			System.out.println();
+			System.out.println("   ____________");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   | ");
 			System.out.println("___|___");
-			System.out.println();
 		}
 		if (count == 2) {
 			System.out.println("Wrong guess, try again");
+			System.out.println("   ____________");
+			System.out.println("   |          _|_");
+			System.out.println("   |         /   \\");
+			System.out.println("   |        |     |");
+			System.out.println("   |         \\_ _/");
+			System.out.println("   |");
+			System.out.println("   |");
+			System.out.println("   |");
 			System.out.println("   |");
 			System.out.println("   |");
 			System.out.println("   |");
@@ -75,13 +95,20 @@ public class hangman{
 		if (count == 3) {
 			System.out.println("Wrong guess, try again");
 			System.out.println("   ____________");
+			System.out.println("   |          _|_");
+			System.out.println("   |         /   \\");
+			System.out.println("   |        |     |");
+			System.out.println("   |         \\_ _/");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
 			System.out.println("   |");
 			System.out.println("   |");
 			System.out.println("   |");
 			System.out.println("   |");
-			System.out.println("   |");
-			System.out.println("   |");
-			System.out.println("   | ");
 			System.out.println("___|___");
 		}
 		if (count == 4) {
@@ -91,8 +118,15 @@ public class hangman{
 			System.out.println("   |         /   \\");
 			System.out.println("   |        |     |");
 			System.out.println("   |         \\_ _/");
-			System.out.println("   |");
-			System.out.println("   |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |          /    ");
+			System.out.println("   |         /     ");
+			System.out.println("   |        /      ");
 			System.out.println("   |");
 			System.out.println("___|___");
 		}
@@ -105,6 +139,13 @@ public class hangman{
 			System.out.println("   |         \\_ _/");
 			System.out.println("   |           |");
 			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |          / \\");
+			System.out.println("   |         /   \\");
+			System.out.println("   |        /     \\");
 			System.out.println("   |");
 			System.out.println("___|___");
 		}
@@ -116,21 +157,35 @@ public class hangman{
 			System.out.println("   |        |     |");
 			System.out.println("   |         \\_ _/");
 			System.out.println("   |           |");
+			System.out.println("   |         __|");
+			System.out.println("   |        /  |");
+			System.out.println("   |       /   |");
 			System.out.println("   |           |");
-			System.out.println("   |          / \\ ");
-			System.out.println("___|___      /   \\");
+			System.out.println("   |           |");
+			System.out.println("   |          / \\");
+			System.out.println("   |         /   \\");
+			System.out.println("   |        /     \\");
+			System.out.println("   |");
+			System.out.println("___|___");
 		}
 		if (count == 7) {
 			System.out.println("GAME OVER!");
 			System.out.println("   ____________");
 			System.out.println("   |          _|_");
 			System.out.println("   |         /   \\");
-			System.out.println("   |        |     |");
+			System.out.println("   |        | X  X|");
 			System.out.println("   |         \\_ _/");
-			System.out.println("   |          _|_");
-			System.out.println("   |         / | \\");
-			System.out.println("   |          / \\ ");
-			System.out.println("___|___      /   \\");
+			System.out.println("   |           |");
+			System.out.println("   |         __|__");
+			System.out.println("   |        /  |  \\");
+			System.out.println("   |       /   |   \\");
+			System.out.println("   |           |");
+			System.out.println("   |           |");
+			System.out.println("   |          / \\");
+			System.out.println("   |         /   \\");
+			System.out.println("   |        /     \\");
+			System.out.println("   |");
+			System.out.println("___|___");
 			System.out.println("YOU'VE BEEN HUNG!!");
 			System.out.println("The word was " + word);
 		}
